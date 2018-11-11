@@ -12,7 +12,9 @@ class ArthenaApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: SafeArea(
+        child: LoginPage(),
+      )
     );
   }
 }

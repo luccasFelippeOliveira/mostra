@@ -6,6 +6,9 @@ class LoginPage extends StatelessWidget {
   Widget _buildTopImage() {
     return Container(
       color: Colors.teal,
+      child: Image.asset('assets/images/background_arthena.png',
+      fit: BoxFit.fitHeight,
+      ),
     );
   }
 
