@@ -15,13 +15,13 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildForm() {
     return Container(
-      color: Colors.orange,
+      color: Color(0xFF5C6D81),
     );
   }
 
   Widget _buildSignInButton() {
     return Container(
-      color: Colors.lightGreen,
+      color: Color(0xFF283037),
     );
   }
 
