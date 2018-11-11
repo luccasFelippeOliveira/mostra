@@ -3,25 +3,22 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
 
-  Widget _buildTopImage(double height) {
+  Widget _buildTopImage() {
     return Container(
       color: Colors.teal,
-      height: height,
     );
   }
 
 
-  Widget _buildForm(double height) {
+  Widget _buildForm() {
     return Container(
       color: Colors.orange,
-      height: height,
     );
   }
 
-  Widget _buildSignInButton(double height) {
+  Widget _buildSignInButton() {
     return Container(
       color: Colors.lightGreen,
-      height: height,
     );
   }
 
@@ -35,8 +32,17 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: _buildPage(context),
+              child: _buildTopImage(),
+              flex: 4,
             ),
+            Expanded(
+              child: _buildForm(),
+              flex: 4
+            ),
+            Expanded(
+              child: _buildSignInButton(),
+              flex: 1
+            )
           ],
         ),
       ),
