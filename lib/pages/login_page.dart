@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/';
 
+import '../components/home_page_input.dart';
 
 class LoginPage extends StatelessWidget {
+
+  Future<http.Response>
 
   Widget _buildTopImage() {
     return Container(
@@ -36,35 +40,21 @@ class LoginPage extends StatelessWidget {
         color: Color(0xFF9DB3D3),
         borderRadius: BorderRadius.circular(100.0)
       ),
-      child: TextField(
-        enabled: true,
-        cursorColor: Colors.white,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 30.0,
-          color: Colors.white
-        ),
-        decoration: InputDecoration(
-          hintText: 'e-mail',
-          hintStyle: TextStyle(
-            fontSize: 30.0,
-            color: Colors.white,
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              style: BorderStyle.none
-            )
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              style: BorderStyle.none
-            )
-          )
-        ),
-      ),
+      child: HomePageInput('e-mail'),
     );
   }
 
+  Widget _buildPasswordInput() {
+    return Container(
+      height: 60.0,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        color: Color(0xFF9DB3D3),
+        borderRadius: BorderRadius.circular(100.0)
+      ),
+      child: HomePageInput('senha'),
+    );
+  }
 
   Widget _buildForm2() {
     return Container(
@@ -81,7 +71,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 25.0,),
                 _buildEmailInput(),
                 SizedBox(height: 25.0,),
-                _buildEmailInput()
+                _buildPasswordInput()
               ],
             ),
           ],
@@ -111,6 +101,21 @@ class LoginPage extends StatelessWidget {
   Widget _buildSignInButton() {
     return Container(
       color: Color(0xFF283037),
+      child: Center(
+        child: FlatButton(
+          onPressed: () {
+            print('You pressed me!');
+          },
+          child: Center(
+            child: Text('entrar',
+              style: TextStyle(
+                fontSize: 30.0,
+                color: Colors.white
+              ),
+            ),
+          ),
+        ),
+      )
     );
   }
 
