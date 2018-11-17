@@ -1,25 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import '../components/home_page_input.dart';
+import '../pages/pdv_page.dart';
 
 class LoginPage extends StatelessWidget {
-
-
   BuildContext _context;
-
-  Future<String> loginAction() async {
-    final response = await http.get('https://jsonplaceholder.typicode.com/posts/1');
-
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      throw Exception('Failed to login');
-    }
-  }
-
 
   void _showDialog(BuildContext context) {
     showDialog(
@@ -90,7 +77,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildForm2() {
+  Widget _buildForm() {
     return Container(
       color: Color(0xFF5C6D81),
       child: Center(
@@ -114,24 +101,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-
-  Widget _buildForm() {
-    return Container(
-      color: Color(0xFF5C6D81),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          _buildArthenaText(),
-          SizedBox(height: 25.0,),
-          _buildEmailInput(),
-          SizedBox(height: 25.0,),
-          _buildEmailInput()
-        ],
-      ),
-    );
-  }
-
   Widget _buildSignInButton() {
     return Container(
       color: Color(0xFF283037),
@@ -139,7 +108,11 @@ class LoginPage extends StatelessWidget {
         child: FlatButton(
           onPressed: () {
             print('You pressed me!');
-            _showDialog(_context);
+            Navigator.of(_context).push(
+              MaterialPageRoute(
+                builder: (_context) => PdvPage()
+              )
+            );
           },
           child: Center(
             child: Text('entrar',
@@ -169,7 +142,7 @@ class LoginPage extends StatelessWidget {
               flex: 4,
             ),
             Expanded(
-              child: _buildForm2(),
+              child: _buildForm(),
               flex: 4
             ),
             Expanded(
