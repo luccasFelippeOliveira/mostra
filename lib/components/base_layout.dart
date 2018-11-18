@@ -48,7 +48,7 @@ class BaseLayout extends StatelessWidget {
 
     bodyWidgets.add(Expanded(
       child: _buildBodyChild(),
-      flex: 4
+      flex: renderTopImage ? 4 : 8
     ));
 
 

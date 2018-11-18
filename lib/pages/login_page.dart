@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '../components/home_page_input.dart';
+import '../components/base_layout.dart';
 import '../pages/pdv_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -130,28 +131,12 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     this._context = context;
     // Create the Login Page.
-    return new Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: _buildTopImage(),
-              flex: 4,
-            ),
-            Expanded(
-              child: _buildForm(),
-              flex: 4
-            ),
-            Expanded(
-              child: _buildSignInButton(),
-              flex: 1
-            )
-          ],
-        ),
-      ),
+
+    return BaseLayout(
+      renderTopImage: true,
+      bodyChild: _buildForm(),
+      bottomChild: _buildSignInButton(),
     );
+
   }
 }
