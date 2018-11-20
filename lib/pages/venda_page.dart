@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../components/base_layout.dart';
+import '../components/labelled_list_panel.dart';
 
 class VendaPage extends StatelessWidget {
-
   Widget _buildBody() {
     return Column(
       children: <Widget>[
-        SizedBox(height: 20.0,),
+        SizedBox(
+          height: 20.0,
+        ),
         _buildStatusTextPanel(),
         Expanded(
-          child: Center(
-            child: Text('hell')
-          )
-        )
+            child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                child: LabelledListPanel(labelText: 'produtos')))
       ],
     );
   }
@@ -30,17 +31,21 @@ class VendaPage extends StatelessWidget {
   }
 
   Widget _buildStatusText(String label, String value) {
-    TextStyle style = TextStyle(
-      fontSize: 25.0,
-      color: Colors.white
-    );
+    TextStyle style = TextStyle(fontSize: 25.0, color: Colors.white);
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Text(label, style: style,),
-        SizedBox(width: 10.0,),
+        Text(
+          label,
+          style: style,
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
         Text(value, style: style),
-        SizedBox(width: 30.0,)
+        SizedBox(
+          width: 30.0,
+        )
       ],
     );
   }
@@ -57,29 +62,20 @@ class VendaPage extends StatelessWidget {
     );
   }
 
-
   Widget _buildCloseButton() {
     return FlatButton(
-      onPressed: () {
-        print('Close button');
-      },
-      child: Icon(Icons.close,
-        color: Colors.white,
-        size: 48.00
-      )
-    );
+        onPressed: () {
+          print('Close button');
+        },
+        child: Icon(Icons.close, color: Colors.white, size: 48.00));
   }
 
   Widget _buildCameraButton() {
     return FlatButton(
-      onPressed: () {
-        print('Camera button');
-      },
-      child: Icon(Icons.camera,
-        color: Colors.white,
-        size: 48.00
-      )
-    );
+        onPressed: () {
+          print('Camera button');
+        },
+        child: Icon(Icons.camera, color: Colors.white, size: 48.00));
   }
 
   Widget _buildAddButton() {
@@ -87,11 +83,7 @@ class VendaPage extends StatelessWidget {
         onPressed: () {
           print('Add button');
         },
-        child: Icon(Icons.add,
-            color: Colors.white,
-            size: 48.00
-        )
-    );
+        child: Icon(Icons.add, color: Colors.white, size: 48.00));
   }
 
   Widget _buildConfirmButton() {
@@ -99,11 +91,7 @@ class VendaPage extends StatelessWidget {
         onPressed: () {
           print('Confirm button');
         },
-        child: Icon(Icons.done,
-            color: Colors.white,
-            size: 48.00
-        )
-    );
+        child: Icon(Icons.done, color: Colors.white, size: 48.00));
   }
 
   @override
