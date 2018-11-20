@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../components/base_layout.dart';
 import '../components/arthena_text.dart';
+import '../components/round_button.dart';
 
 class PdvPage extends StatelessWidget {
   BuildContext _context = null;
@@ -18,6 +19,15 @@ class PdvPage extends StatelessWidget {
               SizedBox(height: 25.0,),
               ArthenaText(),
               SizedBox(height: 25.0,),
+              RoundButton(
+                callback: () {print('hello');},
+                text: 'controle de estoque',
+              ),
+              SizedBox(height: 25.0,),
+              RoundButton(
+                callback: () {print('hello');},
+                text: 'fazer venda',
+              )
             ],
           )
         ],
