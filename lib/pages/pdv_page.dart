@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../pages/venda_page.dart';
 
 import '../components/base_layout.dart';
 import '../components/arthena_text.dart';
@@ -20,12 +21,19 @@ class PdvPage extends StatelessWidget {
               ArthenaText(),
               SizedBox(height: 25.0,),
               RoundButton(
-                callback: () {print('hello');},
+                callback: () {print('controle estoque');},
                 text: 'controle de estoque',
               ),
               SizedBox(height: 25.0,),
               RoundButton(
-                callback: () {print('hello');},
+                callback: () {
+                  print('fazer venda');
+                  Navigator.of(_context).push(
+                    MaterialPageRoute(
+                      builder: (_context) => VendaPage()
+                    )
+                  );
+                },
                 text: 'fazer venda',
               )
             ],
@@ -54,6 +62,7 @@ class PdvPage extends StatelessWidget {
 
   @override
     Widget build(BuildContext context) {
+      _context = context;
       return BaseLayout(
         renderTopImage: true,
         bodyChild: _buildMenu(),
