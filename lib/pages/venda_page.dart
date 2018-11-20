@@ -5,8 +5,43 @@ import '../components/base_layout.dart';
 class VendaPage extends StatelessWidget {
 
   Widget _buildBody() {
-    return Center(
-      child: Text('hello worrld')
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 20.0,),
+        _buildStatusTextPanel(),
+        Expanded(
+          child: Center(
+            child: Text('hell')
+          )
+        )
+      ],
+    );
+  }
+
+  Widget _buildStatusTextPanel() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _buildStatusText('subtotal', "R\$ 123,45"),
+        _buildStatusText('desconto', "R\$ 123,45"),
+        _buildStatusText('total', "R\$ 123,45"),
+      ],
+    );
+  }
+
+  Widget _buildStatusText(String label, String value) {
+    TextStyle style = TextStyle(
+      fontSize: 25.0,
+      color: Colors.white
+    );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Text(label, style: style,),
+        SizedBox(width: 10.0,),
+        Text(value, style: style),
+        SizedBox(width: 30.0,)
+      ],
     );
   }
 
