@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class LabelledListPanel extends StatefulWidget {
   String _labelText;
+  ListView _listView;
 
-  LabelledListPanel({@required String labelText}) {
+  LabelledListPanel({@required String labelText, @required ListView listView}) {
     this._labelText = labelText;
+    this._listView = listView;
   }
 
   @override
@@ -35,7 +37,7 @@ class _LabelledListPanel extends State<LabelledListPanel> {
             SizedBox(
               height: 10.0,
             ),
-            Expanded(child: ListView())
+            Expanded(child: widget._listView)
           ],
         ));
   }

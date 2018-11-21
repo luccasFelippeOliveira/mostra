@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../components/base_layout.dart';
 import '../components/labelled_list_panel.dart';
+import '../components/product_listitem.dart';
+import '../models/product.dart';
+import '../models/sell_item.dart';
 
 class VendaPage extends StatelessWidget {
+  List<SellItem> _list = new List<SellItem>();
+
+  VendaPage() {
+    _list.add(SellItem(Product('123456789010', 20.0), 2));
+    _list.add(SellItem(Product('123456789011', 10.0), 2));
+    _list.add(SellItem(Product('123456789012', 25.0), 2));
+    _list.add(SellItem(Product('123456789013', 24.0), 2));
+    _list.add(SellItem(Product('123456789014', 20.0), 5));
+  }
+
   Widget _buildBody() {
     return Column(
       children: <Widget>[
@@ -14,7 +27,14 @@ class VendaPage extends StatelessWidget {
         Expanded(
             child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-                child: LabelledListPanel(labelText: 'produtos')))
+                child: LabelledListPanel(
+                  labelText: 'produtos',
+                  listView: ListView.builder(
+                      itemCount: _list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ProductListItem(_list[index]);
+                      }),
+                )))
       ],
     );
   }
