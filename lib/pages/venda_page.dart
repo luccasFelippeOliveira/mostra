@@ -6,18 +6,29 @@ import '../components/product_listitem.dart';
 import '../models/product.dart';
 import '../models/sell_item.dart';
 
-class VendaPage extends StatelessWidget {
-  List<SellItem> _list = new List<SellItem>();
+class VendaPage extends StatefulWidget {
+  List<SellItem> products = new List<SellItem>();
 
   VendaPage() {
-    _list.add(SellItem(Product('123456789010', 20.0), 2));
-    _list.add(SellItem(Product('123456789011', 10.0), 2));
-    _list.add(SellItem(Product('123456789012', 25.0), 2));
-    _list.add(SellItem(Product('123456789013', 24.0), 2));
-    _list.add(SellItem(Product('123456789014', 20.0), 5));
+    // Initialize the list. (PROTOTYPE)
+    products.add(SellItem(Product('123456789010', 20.0), 2));
+    products.add(SellItem(Product('123456789011', 10.0), 2));
+    products.add(SellItem(Product('123456789012', 25.0), 2));
+    products.add(SellItem(Product('123456789013', 24.0), 2));
+    products.add(SellItem(Product('123456789014', 20.0), 5));
   }
 
+  @override
+  State<StatefulWidget> createState() {
+    return _VendaPage();
+  }
+}
+
+class _VendaPage extends State<VendaPage> {
+  bool haveItensSelected = false;
+
   Widget _buildBody() {
+    List<SellItem> _list = widget.products;
     return Column(
       children: <Widget>[
         SizedBox(
@@ -32,11 +43,32 @@ class VendaPage extends StatelessWidget {
                   listView: ListView.builder(
                       itemCount: _list.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ProductListItem(_list[index]);
+                        return ProductListItem(
+                          _list[index],
+                          onSelect: () {
+                            onTapItemToggle(index);
+                          },
+                        );
                       }),
                 )))
       ],
     );
+  }
+
+  void onTapItemToggle(int index) {
+    List<SellItem> _list = widget.products;
+    _list[index].isSelected = !_list[index].isSelected;
+
+    int foundIndex = _list.indexWhere((item) => item.isSelected);
+    if (foundIndex >= 0) {
+      setState(() {
+        haveItensSelected = true;
+      });
+    } else {
+      setState(() {
+        haveItensSelected = false;
+      });
+    }
   }
 
   Widget _buildStatusTextPanel() {
@@ -70,15 +102,21 @@ class VendaPage extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildBottomButtons() {
+    return !haveItensSelected
+        ? <Widget>[
+            _buildCloseButton(),
+            _buildCameraButton(),
+            _buildAddButton(),
+            _buildConfirmButton()
+          ]
+        : <Widget>[_buildDiscountButton(), _buildDeleteButton()];
+  }
+
   Widget _buildBottom() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        _buildCloseButton(),
-        _buildCameraButton(),
-        _buildAddButton(),
-        _buildConfirmButton()
-      ],
+      children: _buildBottomButtons()
     );
   }
 
@@ -112,6 +150,26 @@ class VendaPage extends StatelessWidget {
           print('Confirm button');
         },
         child: Icon(Icons.done, color: Colors.white, size: 48.00));
+  }
+
+  Widget _buildDiscountButton() {
+    return FlatButton(
+        onPressed: () {
+          print('Dicount button');
+        },
+        child: Icon(
+          Icons.money_off,
+          color: Colors.white,
+          size: 48.0,
+        ));
+  }
+
+  Widget _buildDeleteButton() {
+    return FlatButton(
+        onPressed: () {
+          print('delete button');
+        },
+        child: Icon(Icons.delete, color: Colors.white, size: 48.0));
   }
 
   @override
