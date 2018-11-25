@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/venda_page.dart';
+import '../pages/estoque_page.dart';
 
 import '../components/base_layout.dart';
 import '../components/arthena_text.dart';
@@ -21,7 +22,14 @@ class PdvPage extends StatelessWidget {
               ArthenaText(),
               SizedBox(height: 25.0,),
               RoundButton(
-                callback: () {print('controle estoque');},
+                callback: () {
+                  print('controle estoque');
+                  Navigator.of(_context).push(
+                    MaterialPageRoute(
+                      builder: (_context) => EstoquePage()
+                    )
+                  );
+                },
                 text: 'controle de estoque',
               ),
               SizedBox(height: 25.0,),
